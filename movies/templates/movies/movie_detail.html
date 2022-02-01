@@ -1,0 +1,7 @@
+{% extends 'movies/movie_base.html' %}
+{% block movie_content %}
+<div class="col-md-8">
+    {% comment %} {% include "movies/_movie.html" %} {% endcomment %}
+    <h3>Movie Name - {{movie.name}}</h3>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'movies/movie_base.html' %}
+{% block pre_movie_content %}
+<div class="col-md-4">
+    {% if request.user.is_authenticated %}
+    <div class="card card-with-shadow">
+        <div class="content">
+            <ul class="list-unstyled">
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    <div class="card card-with-shadow">
+        <div class="content">
+            <h5 class="title">All Categories</h5>
+            <ul class="list-unstyled">
+                {% for other_category in get_other_categories %}
+                <li class='group li-with-bullet'><a href="{% url 'categories:single' slug=other_caetgory.slug %}"></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block movie_content %}
+<div class="col-md-8">
+    {% for movie in movie_list %}
+    {% if user.is_authenticated and movie.user == user %}
+    {% include "movies/_movie.html" %}{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

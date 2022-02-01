@@ -1,0 +1,18 @@
+{% extends 'categories/category_base.html' %}
+{% block precategory %}
+<h1>{{category.name}}</h1>
+{% endblock %}
+{% block category_content %}
+<div class="col-md-8">
+    {% if category.movies.count == 0 %}
+    <h2>No movies in this category yet</h2>
+    {% else %}
+    {% for movie in category.movies.all %}
+    {% if user.is_authenticated and movie.user == user %}
+    {% include "movies/_movie.html" %}
+    {% comment %} <h3>{{movies.name}}</h3> {% endcomment %}
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

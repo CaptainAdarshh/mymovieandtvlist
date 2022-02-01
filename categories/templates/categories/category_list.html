@@ -1,0 +1,48 @@
+{% extends 'categories/category_base.html' %}
+{% block precategory %}
+<div class="col-md-4">
+    <div class="content">
+        {% if user.is_authenticated %}
+        <h2>Welcome Back!
+            <a href="{% url 'movies:for_user' username=user.username %}">@{{user.username}}</a>
+        </h2>
+        {% endif %}
+        <h2>Categories</h2>
+        <p>Welcome to the categories page!</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block category_content %}
+<div class="col-md-8">
+    <div class="list-group">
+        <a class='list-group-item' href="{% url 'movies:all' %}">
+        <h3 class="title list-group-item-heading">All Movies</h3>
+        <div class="list-group-item container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="badge">
+                        {{ movie_user.3 }}
+                        </span>Movies
+                </div>
+            </div>
+        </div>
+        </a>
+        {% for category in object_list %}
+        <a class='list-group-item' href="{% url 'categories:single' slug=category.slug %}">
+            <h3 class="title list-group-item-heading">{{category.name}}</h3>
+            <div class="list-group-item container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="badge">
+                            {% if category.slug == "watched" %}{{ movie_user.0 }}{% endif %}
+                            {% if category.slug == "watching" %}{{ movie_user.1 }}{% endif %}
+                            {% if category.slug == "plan-to-watch" %}{{ movie_user.2 }}{% endif %}
+                            </span>Movies
+                    </div>
+                </div>
+            </div>
+        </a>{% endfor %}
+    </div>
+</div>
+{% endblock %}

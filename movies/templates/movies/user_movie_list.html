@@ -1,0 +1,22 @@
+{% extends 'movies/movie_base.html' %}
+
+{% block premovie %}
+{% if user.is_authenticated and movie_user == user %}
+<div class="col-md-4">
+    <h1><a href="{% url 'movies:for_user' username=movie_user.username %}">@{{ movie_user.username }}</a>
+        </h1>
+        <p>written {{ movie_user.movies.count }} movies so far <p>
+</div>
+{% else %}
+<h3>User Not Found</h3>
+{% endif %}
+{% endblock %}
+
+{% block movie_content %}
+{% if user.is_authenticated and movie_user == user %}
+<div class="col-md-8">
+    {% for movie in movie_list %}
+    {% include "movies/_movie.html" %}
+    {% endfor %}
+</div>{% endif %}
+{% endblock %}

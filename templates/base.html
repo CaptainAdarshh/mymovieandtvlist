@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Social</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> 
+
+    <!-- Alternative to Bootstrap 3 Glyphicons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'movielogger/css/master.css'%}">
+</head>
+<body>
+
+    <nav class="navbar mynav" role='navigation' id='navbar'>
+        <div class="container">
+            <a class='navbar-brand mynav' href="{% url 'home' %}">Movie Logger</a>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'movies:all' %}">All Movies</a></li>
+                <li><a href="{% url 'movies:create' %}">Add Movie</a></li>
+                <li><a href="{% url 'categories:all' username=user.username %}">Categories</a></li>
+                <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+                {% else %}
+                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container mycontent">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+</body>
+</html>

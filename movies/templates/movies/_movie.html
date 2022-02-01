@@ -1,0 +1,28 @@
+<div class="movie media">
+    <h3><a href="{% url 'movies:single' username=movie.user.username pk=movie.pk %}">{{movie.name_html|safe}}</a></h3>
+    <div class="media-body">
+        {% comment %} <strong>
+            {{post.user.username}}
+        </strong> {% endcomment %}
+        <h5 class="media-heading">
+            
+            <span class="username">
+                <a href="{% url 'movies:for_user' username=movie.user.username %}">@{{movie.user.username}}</a>
+            </span>
+            <span>
+                <a href="{% url 'categories:single' slug=movie.category.slug %}">{{movie.category}}</a>
+            </span>
+            <time class="time">
+                <a href="{% url 'movies:single' username=movie.user.username pk=movie.pk %}">{{movie.release}}</a>
+            </time>
+        </h5>
+        <div class="media-footer">
+            {% if user.is_authenticated and movie.user == user %}
+            <a href="{% url 'movies:delete' pk=movie.pk %}" time="delete" class='btn btn-simple'>
+                <span class="glyphicon glyphicon-remove text-danger" aria-hidden='true'>
+                </span>
+                <span class="text-danger icon-label">Delete</span>
+            </a>{% endif %}
+        </div>
+    </div>
+</div>

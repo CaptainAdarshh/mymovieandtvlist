@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="posts-page">
+    <div class="container">
+        <div class="row">
+            {% block premovie %}{% endblock %}
+            {% block movie_content %}{% endblock %}
+            {% block post_movie %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
