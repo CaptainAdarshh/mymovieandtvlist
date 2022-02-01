@@ -176,7 +176,6 @@ pyreadline==2.1
 pyrsistent==0.17.3
 PySocks==1.7.1
 pytest==6.2.3
-python-dateutil==1.5
 python-jsonrpc-server==0.4.0
 python-language-server==0.36.2
 python3-openid==3.2.0
